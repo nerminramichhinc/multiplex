@@ -1,0 +1,8 @@
+
+"git push origin master"
+
+"git add -A" (adds deleted, inserted files/folders)
+
+remember username & password:
+
+"$ git config --global credential.helper wincred"
