@@ -1,4 +1,5 @@
 html,
+
 body {
     height: 100%;
 }
@@ -8,10 +9,11 @@ body {
     height: auto;
     margin: 0 auto -60px;
     padding: 0 0 60px;
+    
 }
 
 .wrap > .container {
-    padding: 70px 15px 20px;
+    padding: 70px 15px 20px;    
 }
 
 .footer {
@@ -102,4 +104,48 @@ a.desc:after {
 
 .nav > li > form > button:hover {
     text-decoration: none;
+}
+
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  }
+
+.Absolute-Center.is-Responsive {
+  width: 50%; 
+  height: 40%;
+  min-width: 600px;
+  max-width: 800px;
+  padding: 40px;
+  padding-left: 10%;
+  border-radius: 20px;
+  
+  border-style: groove;
+}
+
+
+.customized-nav{
+    
+    background-color: black; 
+    padding-left: 30%;
+    width: 100%;
+}
+
+.customized-nav > li {
+    width: auto;
+}
+
+.table tr:hover {
+    background-color: #ecffa0;
+}
+
+.table-header{
+    background-color: #ccff00;
+}
+
+.add-new{
+    height: 50px;
+    margin-left: 20px;
 }

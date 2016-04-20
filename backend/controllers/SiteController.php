@@ -26,7 +26,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'test'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -57,6 +57,8 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+    
+    
 
     public function actionLogin()
     {
@@ -65,13 +67,20 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
+        
+        // check if login form is submitted 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         } else {
+            // Send login model to model view and wait for submit
             return $this->render('login', [
                 'model' => $model,
             ]);
         }
+    }
+    public function actionTest()
+    {
+        return $this->render('test');
     }
 
     public function actionLogout()

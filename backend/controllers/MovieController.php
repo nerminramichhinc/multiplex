@@ -9,6 +9,46 @@ use yii\filters\VerbFilter;
 
 class MovieController extends Controller
 {
+     public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['list', 'create', 'delete'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['list', 'create', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+    
+    
+    
+    
+    
+    public function actionList() {
+        
+        $movies = Movie::find()->all();
+        
+        return $this->render('list',  [
+                'movies'=>$movies
+             ]);
+    }
+    
+    
 
     public function actionCreate($title, $duration, $synopsis, $link, $cover)
     {   
@@ -43,7 +83,10 @@ class MovieController extends Controller
         if($movie){
             $movie->delete();
         }
-
+        
+        // return to previous page after deleting a record
+        return $this->redirect(Yii::$app->request->referrer);
+        
     }
 
     protected function findModel($id)
