@@ -149,3 +149,8 @@ a.desc:after {
     height: 50px;
     margin-left: 20px;
 }
+
+.pagination-widget{
+    margin-left: 10%;
+    margin-right: 40%;
+}

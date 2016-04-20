@@ -2,7 +2,9 @@
 
     use yii\bootstrap\NavBar;
     use yii\bootstrap\Nav;
+
     use yii\widgets\LinkPager;
+    use yii\grid\GridView;
 
                 NavBar::begin();
                     echo Nav::widget([
@@ -22,88 +24,22 @@
 <button class="btn btn-success add-new"> Add Actor </button>
 <br>
 <br>
+<?php 
+echo GridView::widget([
+    'dataProvider' => $provider,
+    'columns' => [
+            [
+                'attribute' => 'First name',
+                'value' => function($data) { return $data->first_name; },
+                'format' => 'raw',
+             ],
+            [
+                'attribute' => 'Last name',
+                'value' => function($data) { return $data->last_name; },
+                'format' => 'raw',
+             ]
+                      
+    ]
+    ]);
 
-<div class = "container table-responsive">
-            <table class = "table">
-
-               <thead>
-                          <tr class="table-header">
-                            <?php
-                                            echo "<th>";    
-                                                echo "#";
-                                            echo "</th>";   
-                                            
-                                            echo "<th>";     
-                                                echo "First name";
-                                            echo "</th>";      
-                                            
-                                            echo "<th>";     
-                                                echo "Last name";
-                                            echo "</th>";     
-                                            
-                                            echo "<th>";     
-                                                echo "Created";
-                                            echo "</th>";    
-                                            
-                                            echo "<th>";     
-                                                echo "Updated";
-                                            echo "</th>";                     
-                                            
-                                            echo "<th>";     
-                                                echo "Actions";
-                                            echo "</th>";                     
-                                    
-                            ?>
-                          </tr>
-               </thead>
-               
-               <tbody>
-                       
-                <?php
-
-                    foreach ($actors as $actor) {
-
-                        echo "<tr>";
-                                echo "<td>";
-                                    echo "<b>";
-                                        echo $actor->id;
-                                    echo "</b>";
-                                echo "</td>";
-
-                                echo "<td>";
-                                    echo "<b>";
-                                        echo $actor->first_name;
-                                    echo "</b>";
-                                echo "</td>";
-
-                                echo "<td>";
-                                    echo $actor->last_name;
-                                echo "</td>";                      
-                                
-                                echo "<td>";
-                                    echo $actor->created_at;
-                                echo "</td>";                      
-                                
-                                echo "<td>";
-                                    echo $actor->updated_at;
-                                echo "</td>";                      
-                                                                                     
-                                echo "<td>";
-                                
-                                 echo "<a href='/multiplexcinema/backend/web/index.php?r=actor%2Fedit&id=".$actor->id."'><i class='glyphicon glyphicon-pencil'></i></a>";
-                                 echo "<a href='/multiplexcinema/backend/web/index.php?r=actor%2Fdelete&id=".$actor->id."'><i class='glyphicon glyphicon-remove'></i></a>";
-                                
-                                
-                                echo "</td>";                      
-                                         
-                                
-                        echo "</tr>";           
-
-                    }
-
-               ?>
-               </tbody>
-                
-            </table>
-    <?= LinkPager::widget(['pagination'=>$pagination]);?>
-</div>
+?>

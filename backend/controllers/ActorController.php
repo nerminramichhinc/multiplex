@@ -7,6 +7,7 @@ use yii\web\Controller;
 use common\models\Actor;
 use yii\filters\VerbFilter;
 use yii\data\Pagination;
+use yii\data\ActiveDataProvider;
 
 class ActorController extends Controller
 {
@@ -41,22 +42,34 @@ class ActorController extends Controller
         
         $query = Actor::find();
         
-        $pagination = new Pagination([
+        $provider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                'pageSize' => 10,
+                ],
+            'sort' => [
+                    'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                    'first_name' => SORT_ASC, 
+            ]
+        ],
+    ]);
+        
+   /*     $pagination = new Pagination([
             
-            'defaultPageSize' => 1,
+            'defaultPageSize' => 10,
             'totalCount' => $query->count(),           
             
         ]);
         
-        $actors = $query->orderBy('first_name')
+        $actors = $query->orderBy('id')
                 ->offset($pagination->offset)
                 ->limit($pagination->limit)
                 ->all();       
         
-        
+    */   
         return $this->render('list',  [
-                'actors'=>$actors,
-                'pagination'=>$pagination,
+                'provider'=>$provider,
              ]);
     }
     
@@ -91,6 +104,7 @@ class ActorController extends Controller
             $actor->delete();
         }
 
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     protected function findModel($id)
