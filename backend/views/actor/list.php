@@ -25,21 +25,37 @@
 <br>
 <br>
 <?php 
-echo GridView::widget([
-    'dataProvider' => $provider,
-    'columns' => [
-            [
-                'attribute' => 'First name',
-                'value' => function($data) { return $data->first_name; },
-                'format' => 'raw',
-             ],
-            [
-                'attribute' => 'Last name',
-                'value' => function($data) { return $data->last_name; },
-                'format' => 'raw',
-             ]
-                      
-    ]
-    ]);
+    echo GridView::widget([
+        'dataProvider' => $provider,
+        'columns' => [
+                        [
+                            'attribute' => '#',
+                            'value' => function($data) {return $data->id; },
+                            'format' => 'raw',
+                         ],
 
+                        [
+                            'attribute' => 'First name',
+                            'value' => function($data) { return $data->first_name; },
+                            'format' => 'raw',
+                         ],
+                        [
+                            'attribute' => 'Last name',
+                            'value' => function($data) { return $data->last_name; },
+                            'format' => 'raw',
+                         ],
+
+                         [
+                            'attribute' => 'Created',
+                            'value' => function($data) { return $data->created_at; },
+                            'format' => 'raw',
+                         ],
+
+                         [
+                            'attribute' => 'Last update',
+                            'value' => function($data) { return $data->updated_at; },
+                            'format' => 'raw',
+                         ]            
+                    ]
+        ]);
 ?>

@@ -2,6 +2,7 @@
 
     use yii\bootstrap\NavBar;
     use yii\bootstrap\Nav;
+    use yii\grid\GridView;
 
                 NavBar::begin();
                     echo Nav::widget([
@@ -21,93 +22,56 @@
 <button class="btn btn-success add-new"> Add Movie </button>
 <br>
 <br>
+<?php 
+    echo GridView::widget([
+        'dataProvider' => $provider,
+        'columns' => [
+                        [
+                            'attribute' => '#',
+                            'value' => function($data) {return $data->id; },
+                            'format' => 'raw',
+                         ],
 
-<div class = "container table-responsive">
-            <table class = "table">
+                        [
+                            'attribute' => 'Title',
+                            'value' => function($data) { return $data->movie_title; },
+                            'format' => 'raw',
+                         ],
+                        [
+                            'attribute' => 'Duration',
+                            'value' => function($data) { return $data->movie_duration; },
+                            'format' => 'raw',
+                         ],
 
-               <thead>
-                          <tr class="table-header">
-                            <?php
-                                            echo "<th>";    
-                                                echo "#";
-                                            echo "</th>";   
-                                            echo "<th>";     
-                                                echo "Title";
-                                            echo "</th>";                   
-                                            echo "<th>";     
-                                                echo "Duration";
-                                            echo "</th>";                   
-                                            echo "<th>";     
-                                                echo "Synopsis";
-                                            echo "</th>";                   
-                                            echo "<th>";     
-                                                echo "IMDB Link";
-                                            echo "</th>";                   
-                                            echo "<th>";     
-                                                echo "Cover";
-                                            echo "</th>";
-                                            echo "<th>";     
-                                                echo "Actions";
-                                            echo "</th>";
-                                            
-                            ?>
-                          </tr>
-               </thead>
-               
-               <tbody>
-                       
-                <?php
+                         [
+                            'attribute' => 'Synopsis',
+                            'value' => function($data) { return substr($data->movie_synopsis, 0, 20); },
+                            'format' => 'raw',
+                         ],
 
-                    foreach ($movies as $movie) {
+                         [
+                            'attribute' => 'IMBD',
+                            'value' => function($data) { return $data->imdb_link; },
+                            'format' => 'raw',
+                         ],
+                          
+                         [
+                            'attribute' => 'Cover',
+                            'value' => function($data) { return $data->movie_cover; },
+                            'format' => 'raw',
+                         ],
 
-                        echo "<tr>";
-                                echo "<td>";
-                                    echo "<b>";
-                                        echo $movie->id;
-                                    echo "</b>";
-                                echo "</td>";
+                         [
+                            'attribute' => 'Created',
+                            'value' => function($data) { return $data->created_at; },
+                            'format' => 'raw',
+                         ],
 
-                                echo "<td>";
-                                    echo "<b>";
-                                        echo $movie->movie_title;
-                                    echo "</b>";
-                                echo "</td>";
-
-                                echo "<td>";
-                                    echo $movie->movie_duration;
-                                echo "</td>";                      
-                                
-                                echo "<td>";
-                                    echo "<i>";
-                                            echo substr($movie->movie_synopsis, 0, 200);
-                                            echo "...";
-                                    echo "</i>";
-                                echo "</td>";
-                                
-                                echo "<td>";
-                                    echo $movie->imdb_link;
-                                echo "</td>";                      
-                                
-                                echo "<td>";
-                                    echo $movie->movie_cover;
-                                echo "</td>";                      
-                                
-                                echo "<td>";                       
-                                
-                                 
-                                 echo "<a href='/multiplexcinema/backend/web/index.php?r=movie%2Fedit&id=".$movie->id."'><i class='glyphicon glyphicon-pencil'></i></a>";
-                                 echo "<a href='/multiplexcinema/backend/web/index.php?r=movie%2Fdelete&id=".$movie->id."'><i class='glyphicon glyphicon-remove'></i></a>";
-                                
-                                
-                                echo "</td>";                      
-                                         
-                                
-                        echo "</tr>";           
-
-                    }
-
-               ?>
-               </tbody>
-                
-            </table>
-</div>
+                         [
+                            'attribute' => 'Last update',
+                            'value' => function($data) { return $data->updated_at; },
+                            'format' => 'raw',
+                         ]            
+                    ]
+        ]);
+?>

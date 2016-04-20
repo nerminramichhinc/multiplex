@@ -55,20 +55,7 @@ class ActorController extends Controller
         ],
     ]);
         
-   /*     $pagination = new Pagination([
-            
-            'defaultPageSize' => 10,
-            'totalCount' => $query->count(),           
-            
-        ]);
-        
-        $actors = $query->orderBy('id')
-                ->offset($pagination->offset)
-                ->limit($pagination->limit)
-                ->all();       
-        
-    */   
-        return $this->render('list',  [
+    return $this->render('list',  [
                 'provider'=>$provider,
              ]);
     }

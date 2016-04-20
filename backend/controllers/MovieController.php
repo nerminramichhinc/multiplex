@@ -6,6 +6,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\Movie;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 
 class MovieController extends Controller
 {
@@ -39,13 +40,27 @@ class MovieController extends Controller
     
     
     
-    public function actionList() {
+    public function actionList()
+    {
+            $query = Movie::find();
         
-        $movies = Movie::find()->all();
+        $provider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                'pageSize' => 10,
+                ],
+            'sort' => [
+                    'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                    'movie_title' => SORT_ASC, 
+            ]
+        ],
+    ]);
         
-        return $this->render('list',  [
-                'movies'=>$movies
+    return $this->render('list',  [
+                'provider'=>$provider,
              ]);
+        
     }
     
     
