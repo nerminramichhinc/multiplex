@@ -4,16 +4,11 @@
 /* @var $content string */
 
 use backend\assets\AppAsset;
-use common\models\LoginForm;
-
 use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\bootstrap\Modal;
 use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
-
 
 AppAsset::register($this);
 ?>
@@ -30,12 +25,10 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
-
-
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => '<a href="#" class="pull-left"><img src="logo.png"></a>',
+        'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -46,7 +39,6 @@ AppAsset::register($this);
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
-        
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
@@ -57,7 +49,6 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
-
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
@@ -65,7 +56,6 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <!--
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
@@ -73,27 +63,15 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
-    -->
 </div>
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Multiplex Cinema <?= date('Y') ?></p>
-      
+        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+
+        <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
 </footer>
-
-<?php
-    Modal::begin([
-                'header' => '<h2>Login</h2>',
-                'id' => 'modal',
-                'size' => 'modal-lg',
-            ]);
-
-         echo "<div id='modalContent'></div>";
-    Modal::end();
-?>
-
 
 <?php $this->endBody() ?>
 </body>
