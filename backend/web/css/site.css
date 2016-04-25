@@ -137,8 +137,8 @@ a.desc:after {
     width: auto;
 }
 
-.table tr:hover {
-    background-color: #ecffa0;
+tr:hover {
+    background-color: pink;
 }
 
 .table-header{

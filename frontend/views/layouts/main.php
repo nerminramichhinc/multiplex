@@ -52,7 +52,8 @@ AppAsset::register($this);
         ['label' => 'Home', 'url' => ['/site/index']],
         ];
     if (Yii::$app->user->isGuest) {
-          //$menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+          $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+          $menuItems[] = ['label' => 'Register', 'url' => ['/site/signup']];
             // ['label' => 'Show Modal', 'url' => ['/site/showmodal']],
             $menuItems[] = '<li><a data-toggle="modal" data-target="#modal" style="cursor: pointer;">Log in</a></li>';
     } else {

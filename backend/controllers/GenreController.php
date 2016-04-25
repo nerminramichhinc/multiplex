@@ -6,9 +6,63 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use common\models\Genre;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
+
+
 
 class GenreController extends Controller
 {
+
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['list', 'create', 'delete'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['list', 'create', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
+        ];
+    }
+    
+    public function actionList() {
+        
+        $query = Genre::find();
+        
+        $provider = new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                'pageSize' => 10,
+                ],
+            'sort' => [
+                    'defaultOrder' => [
+                    'genre_name' => SORT_ASC, 
+                    'created_at' => SORT_DESC,
+                    
+            ]
+        ],
+    ]);
+        
+    return $this->render('list',  [
+                'provider'=>$provider,
+             ]);
+    }
+
 
     public function actionCreate($name)
     {   

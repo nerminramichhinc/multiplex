@@ -11,10 +11,10 @@
                         'items' => [
                             ['label' => 'Actors', 'url' => ['/actor/list']],
                             ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
-                            ['label' => 'Genres', 'url' => ['/site/about']],
-                            ['label' => 'Discounts', 'url' => ['/site/about']],
-                            ['label' => 'Projections', 'url' => ['/site/about']],
-                            ['label' => 'Tickets', 'url' => ['/site/about']],
+                            ['label' => 'Genres', 'url' => ['/genre/list']],
+                            ['label' => 'Discounts', 'url' => ['/discount/list']],
+                            ['label' => 'Projections', 'url' => ['/projection/list']],
+                            ['label' => 'Tickets', 'url' => ['/tickets/list']],
                         ],
                         'options' => ['class' => 'navbar navbar-nav customized-nav'],
                     ]);

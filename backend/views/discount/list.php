@@ -2,6 +2,8 @@
 
     use yii\bootstrap\NavBar;
     use yii\bootstrap\Nav;
+
+    use yii\widgets\LinkPager;
     use yii\grid\GridView;
 
                 NavBar::begin();
@@ -19,7 +21,7 @@
                 NavBar::end();
 ?>
 
-<button class="btn btn-success add-new"> Add Movie </button>
+<button class="btn btn-success add-new"> Add Discount </button>
 <br>
 <br>
 <?php 
@@ -33,34 +35,17 @@
                          ],
 
                         [
-                            'attribute' => 'Title',
-                            'value' => function($data) { return $data->movie_title; },
-                            'format' => 'raw',
-                         ],
-                        [
-                            'attribute' => 'Duration',
-                            'value' => function($data) { return $data->movie_duration; },
+                            'attribute' => 'Discount type',
+                            'value' => function($data) { return $data->discount_name; },
                             'format' => 'raw',
                          ],
 
                          [
-                            'attribute' => 'Synopsis',
-                            'value' => function($data) { return substr($data->movie_synopsis, 0, 20); },
+                            'attribute' => 'Discount percentage',
+                            'value' => function($data) { return $data->discount_percentage; },
                             'format' => 'raw',
                          ],
-
-                         [
-                            'attribute' => 'IMBD',
-                            'value' => function($data) { return $data->imdb_link; },
-                            'format' => 'raw',
-                         ],
-                          
-                         [
-                            'attribute' => 'Cover',
-                            'value' => function($data) { return $data->movie_cover; },
-                            'format' => 'raw',
-                         ],
-
+                        
                          [
                             'attribute' => 'Created',
                             'value' => function($data) { return $data->created_at; },
