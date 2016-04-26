@@ -62,7 +62,8 @@ class MovieController extends Controller
              ]);
         
     }
-    
+  
+  
     
 
     public function actionCreate($title, $duration, $synopsis, $link, $cover)

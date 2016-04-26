@@ -3,10 +3,14 @@ namespace backend\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
-use common\models\Genre;
 use yii\filters\VerbFilter;
+use yii\web\Controller;
+
+use common\models\Genre;
+use backend\models\GenreForm;
+
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 
 
 
@@ -21,7 +25,7 @@ class GenreController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['list', 'create', 'delete'],
+                        'actions' => ['list', 'create', 'delete', 'insert'],
                         'allow' => true,
                     ],
                     [
@@ -39,6 +43,40 @@ class GenreController extends Controller
             ],
         ];
     }
+    
+    public function actionInsert()
+    {
+        $model = new GenreForm();
+        
+        
+        // CHECK IF FORM IS SUBMITTED
+        //isset();
+            
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            
+            //return $this->redirect('/genre/list'); -- Checking if submit works
+            
+            $genre = new Genre();
+            
+                $genre->genre_name = $model->genre_name;
+                $genre->created_at = date("Y-m-d H:i:s");
+                $genre->updated_at = date("Y-m-d H:i:s");
+                
+            $genre->save();
+            
+            return $this->redirect(Url::toRoute('genre/list', true));
+            
+        }          
+        
+        return $this->render('insert',[
+            
+            'model'=>$model,
+        ]);
+        
+    }
+    
+    
+    
     
     public function actionList() {
         

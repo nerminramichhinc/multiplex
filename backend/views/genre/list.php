@@ -1,11 +1,14 @@
 <?php
 
-    use yii\bootstrap\NavBar;
-    use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\bootstrap\Nav;
 
-    use yii\widgets\LinkPager;
-    use yii\grid\GridView;
+use yii\widgets\LinkPager;
+use yii\grid\GridView;
 
+use yii\helpers\Url;
+
+    
                 NavBar::begin();
                     echo Nav::widget([
                         'items' => [
@@ -21,19 +24,13 @@
                 NavBar::end();
 ?>
 
-<button class="btn btn-success add-new"> Add Genre </button>
+<a href="<?= Url::toRoute('genre/insert', true); ?> "><input type="button" value="Add Genre" class="btn btn-success add-new"/></a>
 <br>
 <br>
 <?php 
     echo GridView::widget([
         'dataProvider' => $provider,
-        'columns' => [
-                        [
-                            'attribute' => '#',
-                            'value' => function($data) {return $data->id; },
-                            'format' => 'raw',
-                         ],
-
+        'columns' => [                        
                         [
                             'attribute' => 'Genre name',
                             'value' => function($data) { return $data->genre_name; },
@@ -41,14 +38,8 @@
                          ],
                         
                          [
-                            'attribute' => 'Created',
-                            'value' => function($data) { return $data->created_at; },
-                            'format' => 'raw',
-                         ],
-
-                         [
                             'attribute' => 'Last update',
-                            'value' => function($data) { return $data->updated_at; },
+                            'value' => function($data) { return (new \DateTime($data->created_at))->format('d F Y H:i'); },
                             'format' => 'raw',
                          ]            
                     ]
