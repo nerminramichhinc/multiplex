@@ -3,15 +3,15 @@
 namespace backend\assets;
 use yii\web\AssetBundle;
 
-class ActorAsset extends AssetBundle
+class GenreAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/actor.css',
+        'css/genre.css',
     ];
     public $js = [
-    'js/actor.js'
+    'js/genre.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

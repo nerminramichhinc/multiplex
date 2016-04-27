@@ -1,8 +1,5 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-
 use backend\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -61,6 +58,23 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+<?php        
+        NavBar::begin();
+        echo Nav::widget([
+            'items' => [
+                ['label' => 'Actors', 'url' => ['/actor/list']],
+                ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
+                ['label' => 'Genres', 'url' => ['/genre/list']],
+                ['label' => 'Discounts', 'url' => ['/discount/list']],
+                ['label' => 'Projections', 'url' => ['/projection/list']],
+                ['label' => 'Tickets', 'url' => ['/tickets/list']],
+            ],
+            'options' => ['class' => 'navbar navbar-nav customised-nav'],
+        ]);
+    NavBar::end();
+        
+  ?>  
+        <!-- THIS IS WHERE PAGE CONTENT IS INJECTED-->
         <?= $content ?>
     </div>
 </div>

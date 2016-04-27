@@ -6,21 +6,7 @@
     use yii\widgets\LinkPager;
     use yii\grid\GridView;
 
-                NavBar::begin();
-                    echo Nav::widget([
-                        'items' => [
-                            ['label' => 'Actors', 'url' => ['/actor/list']],
-                            ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
-                            ['label' => 'Genres', 'url' => ['/genre/list']],
-                            ['label' => 'Discounts', 'url' => ['/discount/list']],
-                            ['label' => 'Projections', 'url' => ['/projection/list']],
-                            ['label' => 'Tickets', 'url' => ['/tickets/list']],
-                        ],
-                        'options' => ['class' => 'navbar navbar-nav customized-nav'],
-                    ]);
-                NavBar::end();
 ?>
-
 <button class="btn btn-success add-new"> Add Discount </button>
 <br>
 <br>

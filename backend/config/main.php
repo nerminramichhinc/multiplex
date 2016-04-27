@@ -29,14 +29,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
-        'urlManager' => [
+        
+       /* 'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'baseUrl' => 'http://localhost:8080/multiplexcinema/backend/web',
             'rules' => [
             ],
-        ],
-        */
+        ],*/
+        
     ],
     'params' => $params,
 ];

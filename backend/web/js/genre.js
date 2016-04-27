@@ -1,5 +1,5 @@
-$(document).off("click", "#add-new-actor");
-$(document).on('click', '#add-new-actor', function(e) {
+$(document).off("click", "#add-new-genre");
+$(document).on('click', '#add-new-genre', function(e) {
     e.preventDefault();
     var self = this;
     var url = $(this).data("url");
@@ -7,16 +7,16 @@ $(document).on('click', '#add-new-actor', function(e) {
     $.get(url, {}, '', 'html').done(function(result) {
         $("body").append(result);
 
-        $("#add-actor-modal").modal("show");
+        $("#add-genre-modal").modal("show");
 
-        $("#add-actor-modal").on("hidden.bs.modal", function() {
+        $("#add-genre-modal").on("hidden.bs.modal", function() {
             $(this).remove();
         });
     });
 });
 
-$(document).off("click", ".delete-actor");
-$(document).on('click', '.delete-actor', function(e) {
+$(document).off("click", ".delete-genre");
+$(document).on('click', '.delete-genre', function(e) {
     e.preventDefault();
     var self = this;
     var url = $(this).data("url");
@@ -24,16 +24,16 @@ $(document).on('click', '.delete-actor', function(e) {
     $.get(url, {}, '', 'html').done(function(result) {
         $("body").append(result);
 
-        $("#delete-actor-modal").modal("show");
+        $("#delete-genre-modal").modal("show");
 
-        $("#delete-actor-modal").on("hidden.bs.modal", function() {
+        $("#delete-genre-modal").on("hidden.bs.modal", function() {
             $(this).remove();
         });
     });
 });
 
-$(document).off("click", ".update-actor");
-$(document).on('click', '.update-actor', function(e) {
+$(document).off("click", ".update-genre");
+$(document).on('click', '.update-genre', function(e) {
     e.preventDefault();
     var self = this;
     var url = $(this).data("url");
@@ -41,9 +41,9 @@ $(document).on('click', '.update-actor', function(e) {
     $.get(url, {}, '', 'html').done(function(result) {
         $("body").append(result);
 
-        $("#update-actor-modal").modal("show");
+        $("#update-genre-modal").modal("show");
 
-        $("#update-actor-modal").on("hidden.bs.modal", function() {
+        $("#update-genre-modal").on("hidden.bs.modal", function() {
             $(this).remove();
         });
     });

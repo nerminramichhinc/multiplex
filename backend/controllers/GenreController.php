@@ -1,23 +1,16 @@
 <?php
 namespace backend\controllers;
-
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
-
 use common\models\Genre;
 use backend\models\GenreForm;
-
 use yii\data\ActiveDataProvider;
 use yii\helpers\Url;
 
-
-
 class GenreController extends Controller
 {
-
-
     public function behaviors()
     {
         return [
@@ -25,7 +18,7 @@ class GenreController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['list', 'create', 'delete', 'insert'],
+                        'actions' => ['list', 'create', 'delete','update', 'insert', 'add-genre-modal', 'save-genre', 'delete-genre-modal', 'update-genre-modal'],
                         'allow' => true,
                     ],
                     [
@@ -44,44 +37,57 @@ class GenreController extends Controller
         ];
     }
     
+    public function actionAddGenreModal()
+    {
+        $model = new Genre();        
+        return $this->renderAjax('_add_genre_modal', ['model' => $model]);
+    }
+    
+    public function actionDeleteGenreModal($id)
+    {
+        return $this->renderAjax('_delete_genre_modal', ['id' => $id]);
+    }
+
+    public function actionUpdateGenreModal($id)
+    {
+        $model = $this->findModel($id);
+        $model->updated_at = date("Y-m-d H:i:s");
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->save();
+            return $this->redirect(['genre/list']);
+        }
+        return $this->renderAjax('_update_genre_modal', ['id'=>$id, 'model' => $model]);
+    }
+    
+    public  function actionSaveGenre()
+    {
+        $genre = new Genre();   
+        if ($genre->load(Yii::$app->request->post()) && $genre->validate()){
+            $genre->created_at = date("Y-m-d H:i:s");
+            $genre->updated_at = date("Y-m-d H:i:s");
+            $genre->save();
+            return $this->redirect(['genre/list']);
+        }          
+    }
+
     public function actionInsert()
     {
         $model = new GenreForm();
-        
-        
-        // CHECK IF FORM IS SUBMITTED
-        //isset();
-            
         if ($model->load(Yii::$app->request->post()) && $model->validate()){
-            
-            //return $this->redirect('/genre/list'); -- Checking if submit works
-            
             $genre = new Genre();
-            
                 $genre->genre_name = $model->genre_name;
                 $genre->created_at = date("Y-m-d H:i:s");
                 $genre->updated_at = date("Y-m-d H:i:s");
-                
             $genre->save();
-            
             return $this->redirect(Url::toRoute('genre/list', true));
-            
         }          
-        
         return $this->render('insert',[
-            
             'model'=>$model,
         ]);
-        
     }
-    
-    
-    
-    
+
     public function actionList() {
-        
         $query = Genre::find();
-        
         $provider = new ActiveDataProvider([
                 'query' => $query,
                 'pagination' => [
@@ -91,7 +97,6 @@ class GenreController extends Controller
                     'defaultOrder' => [
                     'genre_name' => SORT_ASC, 
                     'created_at' => SORT_DESC,
-                    
             ]
         ],
     ]);
@@ -101,15 +106,12 @@ class GenreController extends Controller
              ]);
     }
 
-
     public function actionCreate($name)
     {   
         $genre = new Genre();
                $genre->genre_name = $name;
         $genre->save(); 
     }
-
-
 
     public function actionUpdate($id, $name)
     {
@@ -118,16 +120,13 @@ class GenreController extends Controller
         $genre->save(); 
     }
 
-
-
     public function actionDelete($id)
     {
         $genre = $this->findModel($id);
-
         if($genre){
             $genre->delete();
         }
-
+        return $this->redirect(Yii::$app->request->referrer);
     }
 
     protected function findModel($id)
@@ -138,8 +137,6 @@ class GenreController extends Controller
             return null;
         }
     }
-
-
 }
 
 ?>

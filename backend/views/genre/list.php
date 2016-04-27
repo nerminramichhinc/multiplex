@@ -1,36 +1,22 @@
 <?php
-
 use yii\bootstrap\NavBar;
 use yii\bootstrap\Nav;
-
 use yii\widgets\LinkPager;
 use yii\grid\GridView;
-
 use yii\helpers\Url;
-
-    
-                NavBar::begin();
-                    echo Nav::widget([
-                        'items' => [
-                            ['label' => 'Actors', 'url' => ['/actor/list']],
-                            ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
-                            ['label' => 'Genres', 'url' => ['/genre/list']],
-                            ['label' => 'Discounts', 'url' => ['/discount/list']],
-                            ['label' => 'Projections', 'url' => ['/projection/list']],
-                            ['label' => 'Tickets', 'url' => ['/tickets/list']],
-                        ],
-                        'options' => ['class' => 'navbar navbar-nav customized-nav'],
-                    ]);
-                NavBar::end();
+use yii\widgets\Pjax;
+use backend\assets\GenreAsset;
+GenreAsset::register($this);    
 ?>
 
-<a href="<?= Url::toRoute('genre/insert', true); ?> "><input type="button" value="Add Genre" class="btn btn-success add-new"/></a>
+<a href="#" data-url="<?= Url::to(['genre/add-genre-modal']); ?>" id="add-new-genre"><button class="btn btn-success add-new"><span class="glyphicon glyphicon-plus"></span> New genre</button></a>
 <br>
 <br>
 <?php 
+Pjax::begin(['id'=>'genreGrid']);
     echo GridView::widget([
         'dataProvider' => $provider,
-        'columns' => [                        
+        'columns' => [   
                         [
                             'attribute' => 'Genre name',
                             'value' => function($data) { return $data->genre_name; },
@@ -41,7 +27,25 @@ use yii\helpers\Url;
                             'attribute' => 'Last update',
                             'value' => function($data) { return (new \DateTime($data->created_at))->format('d F Y H:i'); },
                             'format' => 'raw',
-                         ]            
-                    ]
+                         ],
+                        [
+                            'attribute' => '',
+                            'value' => function($data) {
+                                $url = Url::to(['genre/update-genre-modal', 'id'=>$data->id]); 
+                                return '<a href="#" data-url="' . $url . '" class="update-genre glyphicon glyphicon-pencil"> </a>';
+                            },
+                            'format' => 'raw',
+                         ],                     
+                        [
+                            'attribute' => '',
+                            'value' => function($data) {
+                                $url = Url::to(['genre/delete-genre-modal', 'id'=>$data->id]); 
+                                return '<a href="#" data-url="' . $url . '" class="delete-genre glyphicon glyphicon-trash"> </a>';
+                            },
+                            'format' => 'raw',
+                         ],                     
+                    ],
+        'tableOptions' =>['class' => 'table table-striped table-bordered table-condensed table-custom'],                                    
         ]);
+Pjax::end();    
 ?>

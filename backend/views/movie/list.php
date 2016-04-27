@@ -1,24 +1,9 @@
 <?php
 
-    use yii\bootstrap\NavBar;
-    use yii\bootstrap\Nav;
-    use yii\grid\GridView;
-
-                NavBar::begin();
-                    echo Nav::widget([
-                        'items' => [
-                            ['label' => 'Actors', 'url' => ['/actor/list']],
-                            ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
-                            ['label' => 'Genres', 'url' => ['/genre/list']],
-                            ['label' => 'Discounts', 'url' => ['/discount/list']],
-                            ['label' => 'Projections', 'url' => ['/projection/list']],
-                            ['label' => 'Tickets', 'url' => ['/tickets/list']],
-                        ],
-                        'options' => ['class' => 'navbar navbar-nav customized-nav'],
-                    ]);
-                NavBar::end();
+use yii\bootstrap\NavBar;
+use yii\bootstrap\Nav;
+use yii\grid\GridView;
 ?>
-
 <button class="btn btn-success add-new"> Add Movie </button>
 <br>
 <br>
@@ -62,14 +47,8 @@
                          ],
 
                          [
-                            'attribute' => 'Created',
-                            'value' => function($data) { return $data->created_at; },
-                            'format' => 'raw',
-                         ],
-
-                         [
                             'attribute' => 'Last update',
-                            'value' => function($data) { return $data->updated_at; },
+                            'value' => function($data) { return (new \DateTime($data->updated_at))->format('d F Y H:i'); },
                             'format' => 'raw',
                          ]            
                     ]
