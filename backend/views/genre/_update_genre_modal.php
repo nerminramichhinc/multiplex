@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-success">Update</button>
       </div>
          <?php ActiveForm::end(); ?>
     </div>

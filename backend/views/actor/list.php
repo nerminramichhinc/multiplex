@@ -38,18 +38,11 @@ Pjax::begin(['id'=>'actorGrid']);
                          ],            
                          
                          [
-                            'attribute' => '',
+                            'attribute' => 'Actions',
                             'value' => function($data) {
                                 $url = Url::to(['actor/update-actor-modal', 'id'=>$data->id]); 
-                                return '<a href="#" data-url="' . $url . '" class="update-actor glyphicon glyphicon-pencil"> </a>';
-                            },
-                            'format' => 'raw',
-                         ],                     
-                        [
-                            'attribute' => '',
-                            'value' => function($data) {
-                                $url = Url::to(['actor/delete-actor-modal', 'id'=>$data->id]); 
-                                return '<a href="#" data-url="' . $url . '" class="delete-actor glyphicon glyphicon-trash"> </a>';
+                                $urlDelete = Url::to(['actor/delete-actor-modal', 'id'=>$data->id]); 
+                                return '<a href="#" data-url="' . $url . '" class="update-actor glyphicon glyphicon-pencil"> </a>' . '<a href="#" data-url="' . $urlDelete . '" class="delete-actor glyphicon glyphicon-trash"> </a>';
                             },
                             'format' => 'raw',
                          ],                     

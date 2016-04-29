@@ -25,18 +25,22 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Multiplex Cinema',
+        'brandLabel' => Html::img('@web/images/logo.png', ['alt'=>Yii::$app->name]),
+        'brandOptions' => ['class' => 'brand-custom'],//options of the brand
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            'class' => 'navbar-inverse navbar-fixed-top navbar-custom',
         ],
     ]);
-    $menuItems = [
-        ['label' => 'Home', 'url' => ['/movie/list']],
-    ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+        $menuItems[] = ['label' => 'Movies', 'url' => ['/movie/list']];
+        $menuItems[] = ['label' => 'Genres', 'url' => ['/genre/list']];
+        $menuItems[] = ['label' => 'Actors', 'url' => ['/actor/list']];
+        $menuItems[] = ['label' => 'Discounts', 'url' => ['/discount/list']];
+        $menuItems[] = ['label' => 'Projections', 'url' => ['/projection/list']];
+        $menuItems[] = ['label' => 'Tickets', 'url' => ['/ticket/list']];
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
@@ -58,22 +62,6 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
-<?php        
-        NavBar::begin();
-        echo Nav::widget([
-            'items' => [
-                ['label' => 'Actors', 'url' => ['/actor/list']],
-                ['label' => 'Movies', 'url' => ['/movie/list']], //CONTROLLER-ACTION
-                ['label' => 'Genres', 'url' => ['/genre/list']],
-                ['label' => 'Discounts', 'url' => ['/discount/list']],
-                ['label' => 'Projections', 'url' => ['/projection/list']],
-                ['label' => 'Tickets', 'url' => ['/tickets/list']],
-            ],
-            'options' => ['class' => 'navbar navbar-nav customised-nav'],
-        ]);
-    NavBar::end();
-        
-  ?>  
         <!-- THIS IS WHERE PAGE CONTENT IS INJECTED-->
         <?= $content ?>
     </div>

@@ -1,17 +1,13 @@
-.delete-actor {
-    color: red;
-}
-
 tr {
     border-color: black;
     border-width: 1px;
     border-style: dotted;
 }
 th {
-    background-color: #4CAF50;
+    background-color: #917d5a;
     color: white;
 }
 
 .table-custom{
-    background-color: #c6ffb9;
+    background-color: #cfc4b0;
 }

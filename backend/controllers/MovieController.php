@@ -36,10 +36,6 @@ class MovieController extends Controller
         ];
     }
     
-    
-    
-    
-    
     public function actionList()
     {
             $query = Movie::find();
@@ -60,11 +56,7 @@ class MovieController extends Controller
     return $this->render('list',  [
                 'provider'=>$provider,
              ]);
-        
     }
-  
-  
-    
 
     public function actionCreate($title, $duration, $synopsis, $link, $cover)
     {   
@@ -77,8 +69,6 @@ class MovieController extends Controller
        $movie->save(); 
     }
 
-
-
     public function actionUpdate($id, $title, $duration, $synopsis, $link, $cover)
     {
         $movie = $this->findModel($id);
@@ -90,8 +80,6 @@ class MovieController extends Controller
        $movie->save(); 
     }
 
-
-
     public function actionDelete($id)
     {
         $movie = $this->findModel($id);
@@ -99,10 +87,8 @@ class MovieController extends Controller
         if($movie){
             $movie->delete();
         }
-        
         // return to previous page after deleting a record
         return $this->redirect(Yii::$app->request->referrer);
-        
     }
 
     protected function findModel($id)
@@ -113,8 +99,5 @@ class MovieController extends Controller
             return null;
         }
     }
-
-
 }
-
 ?>

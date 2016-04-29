@@ -188,3 +188,27 @@ a.desc:after {
     text-decoration: none;
 }
 
+.navbar-custom {
+   border-bottom-color: #cca100;
+   border-bottom-width: 3px;
+    
+}
+.navbar-inverse.navbar-fixed-top.navbar-custom li a {
+    color: white;
+}
+
+.navbar-inverse.navbar-fixed-top.navbar-custom li a:hover {
+    color: gray;  
+    background-color: #6e5700;
+}
+.navbar-custom a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {
+    background-color: #cca100;
+}
+
+.brand-custom {
+    margin-top: -8px;
+}

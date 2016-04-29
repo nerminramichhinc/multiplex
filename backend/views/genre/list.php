@@ -29,18 +29,11 @@ Pjax::begin(['id'=>'genreGrid']);
                             'format' => 'raw',
                          ],
                         [
-                            'attribute' => '',
+                            'attribute' => 'Actions',
                             'value' => function($data) {
                                 $url = Url::to(['genre/update-genre-modal', 'id'=>$data->id]); 
-                                return '<a href="#" data-url="' . $url . '" class="update-genre glyphicon glyphicon-pencil"> </a>';
-                            },
-                            'format' => 'raw',
-                         ],                     
-                        [
-                            'attribute' => '',
-                            'value' => function($data) {
-                                $url = Url::to(['genre/delete-genre-modal', 'id'=>$data->id]); 
-                                return '<a href="#" data-url="' . $url . '" class="delete-genre glyphicon glyphicon-trash"> </a>';
+                                $urlDelete = Url::to(['genre/delete-genre-modal', 'id'=>$data->id]); 
+                                return '<a href="#" data-url="' . $url . '" class="update-genre glyphicon glyphicon-pencil"> </a>' . '<a href="#" data-url="' . $urlDelete . '" class="delete-genre glyphicon glyphicon-trash"> </a>';
                             },
                             'format' => 'raw',
                          ],                     
