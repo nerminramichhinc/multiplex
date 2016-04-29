@@ -8,6 +8,14 @@ th {
     color: white;
 }
 
-.table-custom{
+.table-custom {
     background-color: #cfc4b0;
+}
+
+.update-actor {
+    margin-right: 10px;
+}
+
+tr td:first-child {
+    font-weight: bold;
 }

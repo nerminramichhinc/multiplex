@@ -17,7 +17,7 @@ class MovieController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['list', 'create', 'delete'],
+                        'actions' => ['list', 'create', 'delete','update', 'insert', 'add-movie', 'save-movie', 'delete-movie-modal', 'update-movie-modal'],
                         'allow' => true,
                     ],
                     [
@@ -34,6 +34,39 @@ class MovieController extends Controller
                 ],
             ],
         ];
+    }
+    
+    public function actionAddMovie()
+    {
+        $model = new Movie();        
+        return $this->renderAjax('_add_movie_modal', ['model' => $model]);
+    }
+    
+    public function actionDeleteMovieModal($id)
+    {
+        return $this->renderAjax('_delete_movie_modal', ['id' => $id]);
+    }
+
+    public function actionUpdateMovieModal($id)
+    {
+        $model = $this->findModel($id);
+        $model->updated_at = date("Y-m-d H:i:s");
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->save();
+            return $this->redirect(['movie/list']);
+        }
+        return $this->renderAjax('_update_movie_modal', ['id'=>$id, 'model' => $model]);
+    }
+    
+    public  function actionSaveMovie()
+    {
+        $model = new Movie();   
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->created_at = date("Y-m-d H:i:s");
+            $model->updated_at = date("Y-m-d H:i:s");
+            $model->save();
+            return $this->redirect(['movie/list']);
+        }          
     }
     
     public function actionList()

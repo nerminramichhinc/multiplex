@@ -13,5 +13,9 @@ th {
 }
 
 .update-genre {
-    margin-right: 4px;
+    margin-right: 10px;
+}
+
+tr td:first-child {
+    font-weight: bold;
 }

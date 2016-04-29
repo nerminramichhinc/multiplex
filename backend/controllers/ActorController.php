@@ -9,7 +9,8 @@ use common\models\Actor;
 use backend\models\ActorForm;
 use yii\data\Pagination;
 use yii\data\ActiveDataProvider;
-
+use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 class ActorController extends Controller
 {
@@ -20,7 +21,7 @@ class ActorController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['list', 'create', 'delete','update', 'insert', 'add-actor-modal', 'save-actor', 'delete-actor-modal', 'update-actor-modal'],
+                        'actions' => ['list', 'create', 'delete','update', 'insert', 'add-actor', 'save-actor', 'delete-actor-modal', 'update-actor-modal'],
                         'allow' => true,
                     ],
                     [
@@ -39,10 +40,23 @@ class ActorController extends Controller
         ];
     }
     
-    public function actionAddActorModal()
+    public function actionAddActor()
     {
-        $model = new Actor();        
-        return $this->renderAjax('_add_actor_modal', ['model' => $model]);
+        $model = new Actor();      
+        
+        if(Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            Yii::$app->response->format = 'json';
+            return ActiveForm::validate($model);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->validate()){
+            $model->created_at = date("Y-m-d H:i:s");
+            $model->updated_at = date("Y-m-d H:i:s");
+            $model->save();
+            return $this->redirect(['actor/list']);
+        }
+        else{
+            return $this->renderAjax('_add_actor_modal', ['model' => $model]);
+        }
     }
     
     public function actionDeleteActorModal($id)
@@ -61,18 +75,6 @@ class ActorController extends Controller
         return $this->renderAjax('_update_actor_modal', ['id'=>$id, 'model' => $model]);
     }
     
-        
-    public  function actionSaveActor()
-    {
-        $actor = new Actor();   
-        if ($actor->load(Yii::$app->request->post()) && $actor->validate()){
-            $actor->created_at = date("Y-m-d H:i:s");
-            $actor->updated_at = date("Y-m-d H:i:s");
-            $actor->save();
-            return $this->redirect(['actor/list']);
-        }          
-    }
-
     public function actionInsert()
     {
         $model = new ActorForm();     

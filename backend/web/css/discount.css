@@ -10,3 +10,11 @@ th {
 .table-custom{
     background-color: #cfc4b0;
 }
+
+.update-discount {
+    margin-right: 10px;
+}
+
+tr td:first-child {
+    font-weight: bold;
+}

@@ -30,8 +30,8 @@ class Actor extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['first_name', 'unique', 'targetAttribute' => 'first_name'],
             [['first_name', 'last_name'], 'string', 'max' => 50],
+            ['first_name', 'unique'],
         ];
     }
 

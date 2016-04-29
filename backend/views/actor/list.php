@@ -11,7 +11,7 @@
  ?>
 <div class="container container-fluid"> 
 </div>
-<a href="#" data-url="<?= Url::to(['actor/add-actor-modal']); ?>" id="add-new-actor"><button class="btn btn-success add-new"><span class="glyphicon glyphicon-plus"></span> New actor</button></a>
+<a href="#" data-url="<?= Url::to(['actor/add-actor']); ?>" id="add-new-actor"><button class="btn btn-success add-new"><span class="glyphicon glyphicon-plus"></span> New actor</button></a>
 <br>
 <br>
 <?php 

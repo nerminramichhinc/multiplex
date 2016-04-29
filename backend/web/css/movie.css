@@ -7,6 +7,29 @@ th {
     background-color: #917d5a;
     color: white;
 }
-.table-custom{
+
+.table-custom {
     background-color: #cfc4b0;
+}
+
+.update-actor {
+    margin-right: 10px;
+}
+
+.my-class {
+    font-weight: bold;
+}
+
+tr td:first-child {
+    font-weight: bold;
+}
+
+tr td {
+    height: 40px;
+}
+tr:nth-child(even):hover {
+    background: #CCC;
+}
+tr:nth-child(odd):hover {
+    background: #CCC;
 }

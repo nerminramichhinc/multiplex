@@ -7,9 +7,9 @@ $(document).on('click', '#add-new-actor', function(e) {
     $.get(url, {}, '', 'html').done(function(result) {
         $("body").append(result);
 
-        $("#add-actor-modal").modal("show");
+        $("#add-actor").modal("show");
 
-        $("#add-actor-modal").on("hidden.bs.modal", function() {
+        $("#add-actor").on("hidden.bs.modal", function() {
             $(this).remove();
         });
     });
