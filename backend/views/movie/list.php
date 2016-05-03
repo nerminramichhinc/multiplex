@@ -4,10 +4,11 @@ use yii\bootstrap\Nav;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
+use yii\helpers\Html;
 use backend\assets\MovieAsset;
 MovieAsset::register($this);    
 ?>
-<a href="#" data-url="<?= Url::to(['movie/add-movie']); ?>" id="add-new-movie"><button class="btn btn-success add-new"><span class="glyphicon glyphicon-plus"></span> New movie</button></a>
+<?= Html::a('<span class="glyphicon glyphicon-plus"></span> New movie', ['/movie/add-movie'], ['class'=>'btn btn-success add-new movie-new']) ?>
 <br/>
 <br/>
 <?php 
@@ -55,8 +56,8 @@ Pjax::begin(['id'=>'movieGrid']);
                             'value' => function($data) {
                                 $url = Url::to(['movie/update-movie-modal', 'id'=>$data->id]); 
                                 $urlDelete = Url::to(['movie/delete-movie-modal', 'id'=>$data->id]); 
-                                return '<a href="#" data-url="' . $url . '" class="update-actor glyphicon glyphicon-pencil"> </a>'
-                                       . '<a href="#" data-url="' . $urlDelete . '" class="delete-actor glyphicon glyphicon-trash"> </a>';
+                                return '<a href="#" data-url="' . $url . '" class="update-movie glyphicon glyphicon-pencil"> </a>'
+                                       . '<a href="#" data-url="' . $urlDelete . '" class="delete-movie glyphicon glyphicon-trash"> </a>';
                             },
                             'format' => 'raw',
                          ],            

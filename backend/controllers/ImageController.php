@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 
 class ImageController extends Controller
 {
-
+  
     public function actionCreate($name, $ordinal, $added, $updated, $movieid)
     {   
         $image = new Image();

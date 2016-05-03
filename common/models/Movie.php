@@ -38,6 +38,7 @@ class Movie extends \yii\db\ActiveRecord
             [['movie_duration'], 'safe'],
             [['movie_synopsis'], 'string'],
             [['movie_title'], 'string', 'max' => 50],
+            [['movie_cover'], 'file'],
             [['imdb_link', 'movie_cover'], 'string', 'max' => 100],
         ];
     }

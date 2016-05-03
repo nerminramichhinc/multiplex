@@ -1,19 +1,7 @@
 <?php
-
 namespace common\models;
-
 use Yii;
 
-/**
- * This is the model class for table "genre_movie".
- *
- * @property integer $id
- * @property integer $genre_id
- * @property integer $movie_id
- *
- * @property Movie $movie
- * @property Genre $genre
- */
 class GenreMovie extends \yii\db\ActiveRecord
 {
     /**

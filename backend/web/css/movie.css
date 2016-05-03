@@ -7,8 +7,7 @@ th {
     background-color: #917d5a;
     color: white;
 }
-
-.table-custom {
+table{
     background-color: #cfc4b0;
 }
 
@@ -27,9 +26,47 @@ tr td:first-child {
 tr td {
     height: 40px;
 }
-tr:nth-child(even):hover {
-    background: #CCC;
+.update-movie {
+    margin-right: 10px;
 }
-tr:nth-child(odd):hover {
-    background: #CCC;
+
+.login-container {
+    padding-left: 100px;    
+    padding-right: 100px;
+}
+
+.upload {
+    background-color: #36a784;
+    border-color: #006c4b;
+    width: 200px;
+}
+
+.movie-new {
+    padding-top: 15px;
+}
+
+.btn-time {
+    background-color: #00b1d0;
+    color: white;
+}
+
+h3 {
+    color: #ae9d7e;
+}
+
+.login-container {
+    color: wheat;
+}
+    
+.col-lg-10 {
+    background:rgba(0,0,0,0.3);
+}
+
+.pull-right {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.movie-form{
+    margin-left: 5%;
 }

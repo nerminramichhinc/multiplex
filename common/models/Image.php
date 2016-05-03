@@ -33,7 +33,7 @@ class Image extends \yii\db\ActiveRecord
     {
         return [
             [['image_ordinal', 'movie_id'], 'integer'],
-            [['date_added', 'date_updated'], 'safe'],
+            [['created_at', 'updated_at'], 'safe'],
             [['image_name'], 'string', 'max' => 100],
             [['movie_id'], 'exist', 'skipOnError' => true, 'targetClass' => Movie::className(), 'targetAttribute' => ['movie_id' => 'id']],
         ];
